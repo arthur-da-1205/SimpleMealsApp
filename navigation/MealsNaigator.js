@@ -12,21 +12,13 @@ const StackNavigator = createNativeStackNavigator();
 const MealsNavigator = () => {
   return (
     <StackNavigator.Navigator>
-      <StackNavigator.Screen
-        name="Categories"
-        component={CategoriesScreen}
-        options={{headerShown: false}}
-      />
+      <StackNavigator.Screen name="Categories" component={CategoriesScreen} />
       <StackNavigator.Screen
         name="CategoryMeals"
         component={CategoryMealsScreen}
-        options={{headerShown: false}}
+        options={({route}) => ({title: route.params.title})}
       />
-      <StackNavigator.Screen
-        name="MealDetail"
-        component={MealDetailScreen}
-        options={{headerTitle: false}}
-      />
+      <StackNavigator.Screen name="MealDetail" component={MealDetailScreen} />
     </StackNavigator.Navigator>
   );
 };

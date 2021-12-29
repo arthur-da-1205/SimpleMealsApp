@@ -1,16 +1,30 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import {CATEGORIES} from '../../data/dummy-data';
 
-const renderGridItem = itemData => {
-  return (
-    <View style={{flex: 1, margin: 15, height: 100}}>
-      <Text>{itemData.item.title}</Text>
-    </View>
-  );
-};
-
 const CategoriesScreen = props => {
+  const renderGridItem = itemData => {
+    const data = itemData.item;
+    console.log(data);
+    return (
+      <TouchableOpacity
+        style={{flex: 1, margin: 15, height: 100}}
+        onPress={() => {
+          props.navigation.navigate('CategoryMeals', data);
+        }}>
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <FlatList
       keyExtractor={(item, index) => item.id}
